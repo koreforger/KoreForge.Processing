@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Multi-DLL Bundling Pattern: Explicit ItemGroup
+
+    This project bundles all KoreForge.Processing component DLLs into a single
+    NuGet package.  Uses IncludeBuildOutput=false because this project has no
+    output of its own.  The @(ProcessingAssemblies) ItemGroup lists the DLLs
+    to include in lib/net10.0/.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>KoreForge.Processing</PackageId>
+    <Description>Composable processing pipelines with batch execution, flow orchestration, and persistence support.</Description>
+    <PackageTags>pipeline;processing;batch;flow;orchestration;commands</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NoWarn>$(NoWarn);NU5128;CS2008</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="" Link="README.md" />
+  </ItemGroup>
+
+  <!-- Package-level runtime dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <!-- Project references ensure correct build order -->
+  <ItemGroup>
+    <ProjectReference Include="..\KF.Processing.Flow.Abstractions\KF.Processing.Flow.Abstractions.csproj"       ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\KF.Processing.Flow\KF.Processing.Flow.csproj"                                 ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\KF.Processing.Pipeline.Abstractions\KF.Processing.Pipeline.Abstractions.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\KF.Processing.Pipeline\KF.Processing.Pipeline.csproj"                         ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\KF.Processing.Pipelines\KF.Processing.Pipelines.csproj"                       ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- Explicit list of assemblies and XML docs to bundle in the package -->
+  <ItemGroup>
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Flow.Abstractions\bin\$(Configuration)\net10.0\KF.Processing.Flow.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Flow.Abstractions\bin\$(Configuration)\net10.0\KF.Processing.Flow.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Flow\bin\$(Configuration)\net10.0\KF.Processing.Flow.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Flow\bin\$(Configuration)\net10.0\KF.Processing.Flow.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipeline.Abstractions\bin\$(Configuration)\net10.0\KF.Processing.Pipeline.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipeline.Abstractions\bin\$(Configuration)\net10.0\KF.Processing.Pipeline.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipeline\bin\$(Configuration)\net10.0\KF.Processing.Pipeline.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipeline\bin\$(Configuration)\net10.0\KF.Processing.Pipeline.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipelines\bin\$(Configuration)\net10.0\KF.Processing.Pipelines.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KF.Processing.Pipelines\bin\$(Configuration)\net10.0\KF.Processing.Pipelines.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="@(ProcessingAssemblies)" Pack="true" PackagePath="lib/net10.0/" />
+  </ItemGroup>
+
+  <Target Name="TargetsForTfmSpecificBuildOutput">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ProcessingAssemblies)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

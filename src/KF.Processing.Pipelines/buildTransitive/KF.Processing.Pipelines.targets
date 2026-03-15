@@ -1,0 +1,4 @@
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)KoreForge.Processing.Pipelines.docs.targets"
+          Condition="Exists('$(MSBuildThisFileDirectory)KoreForge.Processing.Pipelines.docs.targets')" />
+</Project>
