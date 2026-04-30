@@ -1,0 +1,22 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/KF.Processing.Flow.Abstractions/KF.Processing.Flow.Abstractions.csproj" />
+    <Project Path="src/KF.Processing.Flow/KF.Processing.Flow.csproj" />
+    <Project Path="src/KF.Processing.Pipeline.Abstractions/KF.Processing.Pipeline.Abstractions.csproj" />
+    <Project Path="src/KF.Processing.Pipeline/KF.Processing.Pipeline.csproj" />
+    <Project Path="src/KF.Processing.Pipelines/KF.Processing.Pipelines.csproj" />
+    <Project Path="src/KF.Processing/KF.Processing.csproj" />
+  </Folder>
+  <Folder Name="/tst/">
+    <Project Path="tst/KF.Processing.Flow.Abstractions.Tests/KF.Processing.Flow.Abstractions.Tests.csproj" />
+    <Project Path="tst/KF.Processing.Flow.Tests/KF.Processing.Flow.Tests.csproj" />
+    <Project Path="tst/KF.Processing.Pipeline.Abstractions.Tests/KF.Processing.Pipeline.Abstractions.Tests.csproj" />
+    <Project Path="tst/KF.Processing.Pipeline.Tests/KF.Processing.Pipeline.Tests.csproj" />
+    <Project Path="tst/KF.Processing.Pipelines.Tests/KF.Processing.Pipelines.Tests.csproj" />
+  </Folder>
+</Solution>
