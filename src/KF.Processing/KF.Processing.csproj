@@ -31,11 +31,11 @@
 
   <!-- Project references ensure correct build order -->
   <ItemGroup>
-    <ProjectReference Include="..\KF.Processing.Flow.Abstractions\KF.Processing.Flow.Abstractions.csproj"       ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\KF.Processing.Flow\KF.Processing.Flow.csproj"                                 ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\KF.Processing.Pipeline.Abstractions\KF.Processing.Pipeline.Abstractions.csproj" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\KF.Processing.Pipeline\KF.Processing.Pipeline.csproj"                         ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\KF.Processing.Pipelines\KF.Processing.Pipelines.csproj"                       ReferenceOutputAssembly="false" />
+    <PackageReference Include="KF.Processing.Flow.Abstractions" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KF.Processing.Flow" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KF.Processing.Pipeline.Abstractions" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KF.Processing.Pipeline" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KF.Processing.Pipelines" VersionOverride="1.0.1-alpha" />
   </ItemGroup>
 
   <!-- Explicit list of assemblies and XML docs to bundle in the package -->

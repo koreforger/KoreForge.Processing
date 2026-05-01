@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KF.Processing.Pipeline.Abstractions\KF.Processing.Pipeline.Abstractions.csproj" />
+    <PackageReference Include="KF.Processing.Pipeline.Abstractions" VersionOverride="1.0.1-alpha" />
   </ItemGroup>
 
 </Project>

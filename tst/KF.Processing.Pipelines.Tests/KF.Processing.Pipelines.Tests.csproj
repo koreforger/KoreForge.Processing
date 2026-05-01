@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KF.Processing.Pipelines\KF.Processing.Pipelines.csproj" />
+    <PackageReference Include="KF.Processing.Pipelines" VersionOverride="1.0.1-alpha" />
   </ItemGroup>
 
 </Project>

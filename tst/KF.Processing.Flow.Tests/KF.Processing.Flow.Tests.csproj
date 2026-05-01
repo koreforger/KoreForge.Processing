@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KF.Processing.Flow\KF.Processing.Flow.csproj" />
+    <PackageReference Include="KF.Processing.Flow" VersionOverride="1.0.1-alpha" />
   </ItemGroup>
 
 </Project>

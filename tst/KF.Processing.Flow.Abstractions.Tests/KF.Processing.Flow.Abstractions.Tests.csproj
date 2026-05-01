@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KF.Processing.Flow.Abstractions\KF.Processing.Flow.Abstractions.csproj" />
+    <PackageReference Include="KF.Processing.Flow.Abstractions" VersionOverride="1.0.1-alpha" />
   </ItemGroup>
 
 </Project>
