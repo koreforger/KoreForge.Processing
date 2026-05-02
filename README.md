@@ -38,12 +38,12 @@ await executor.ProcessBatchAsync(records, pipeline, context, options, ct);
 
 | Folder | Assembly | Purpose |
 |---|---|---|
-| `src/KF.Processing.Flow.Abstractions` | `KF.Processing.Flow.Abstractions` | Core flow interfaces |
-| `src/KF.Processing.Flow` | `KF.Processing.Flow` | Flow implementation + pipeline adapter |
-| `src/KF.Processing.Pipeline.Abstractions` | `KF.Processing.Pipeline.Abstractions` | Core pipeline interfaces |
-| `src/KF.Processing.Pipeline` | `KF.Processing.Pipeline` | Pipeline implementation |
-| `src/KF.Processing.Pipelines` | `KF.Processing.Pipelines` | Commands, Instrumentation, Persistence |
-| `src/KF.Processing` | *(bundler)* | Packages all of the above as `KoreForge.Processing` |
+| `src/KoreForge.Processing.Flow.Abstractions` | `KoreForge.Processing.Flow.Abstractions` | Core flow interfaces |
+| `src/KoreForge.Processing.Flow` | `KoreForge.Processing.Flow` | Flow implementation + pipeline adapter |
+| `src/KoreForge.Processing.Pipeline.Abstractions` | `KoreForge.Processing.Pipeline.Abstractions` | Core pipeline interfaces |
+| `src/KoreForge.Processing.Pipeline` | `KoreForge.Processing.Pipeline` | Pipeline implementation |
+| `src/KoreForge.Processing.Pipelines` | `KoreForge.Processing.Pipelines` | Commands, Instrumentation, Persistence |
+| `src/KoreForge.Processing` | *(bundler)* | Packages all of the above as `KoreForge.Processing` |
 
 ## License
 

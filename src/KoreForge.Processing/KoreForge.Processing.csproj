@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Multi-DLL Bundling Pattern: Explicit ItemGroup
+
+    This project bundles all KoreForge.Processing component DLLs into a single
+    NuGet package.  Uses IncludeBuildOutput=false because this project has no
+    output of its own.  The @(ProcessingAssemblies) ItemGroup lists the DLLs
+    to include in lib/net10.0/.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>KoreForge.Processing</PackageId>
+    <Description>Composable processing pipelines with batch execution, flow orchestration, and persistence support.</Description>
+    <PackageTags>pipeline;processing;batch;flow;orchestration;commands</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NoWarn>$(NoWarn);NU5128;CS2008</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <KoreForgeArtifactsConfiguration Condition="'$(KoreForgeArtifactsConfiguration)' == ''">$(Configuration)</KoreForgeArtifactsConfiguration>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="" Link="README.md" />
+  </ItemGroup>
+  <!-- Package-level runtime dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+  <!-- Project references ensure correct build order -->
+  <ItemGroup>
+    <PackageReference Include="KoreForge.Processing.Flow.Abstractions" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KoreForge.Processing.Flow" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KoreForge.Processing.Pipeline.Abstractions" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KoreForge.Processing.Pipeline" VersionOverride="1.0.1-alpha" />
+    <PackageReference Include="KoreForge.Processing.Pipelines" VersionOverride="1.0.1-alpha" />
+  </ItemGroup>
+  <!-- Explicit list of assemblies and XML docs to bundle in the package -->
+  <ItemGroup Condition="'$(KoreForgeComponentBinRoot)' == ''">
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Flow.Abstractions\bin\$(Configuration)\net10.0\KoreForge.Processing.Flow.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Flow.Abstractions\bin\$(Configuration)\net10.0\KoreForge.Processing.Flow.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Flow\bin\$(Configuration)\net10.0\KoreForge.Processing.Flow.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Flow\bin\$(Configuration)\net10.0\KoreForge.Processing.Flow.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipeline.Abstractions\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipeline.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipeline.Abstractions\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipeline.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipeline\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipeline.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipeline\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipeline.xml" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipelines\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipelines.dll" />
+    <ProcessingAssemblies Include="$(MSBuildThisFileDirectory)..\KoreForge.Processing.Pipelines\bin\$(Configuration)\net10.0\KoreForge.Processing.Pipelines.xml" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(KoreForgeComponentBinRoot)' != ''">
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Flow.Abstractions\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Flow.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Flow.Abstractions\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Flow.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Flow\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Flow.dll" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Flow\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Flow.xml" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipeline.Abstractions\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipeline.Abstractions.dll" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipeline.Abstractions\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipeline.Abstractions.xml" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipeline\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipeline.dll" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipeline\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipeline.xml" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipelines\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipelines.dll" />
+    <ProcessingAssemblies Include="$(KoreForgeComponentBinRoot)\KoreForge.Processing.Pipelines\$(KoreForgeArtifactsConfiguration)\KoreForge.Processing.Pipelines.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="@(ProcessingAssemblies)" Pack="true" PackagePath="lib/net10.0/" />
+  </ItemGroup>
+  <Target Name="TargetsForTfmSpecificBuildOutput">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ProcessingAssemblies)" />
+    </ItemGroup>
+  </Target>
+</Project>
