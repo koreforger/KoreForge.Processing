@@ -32,11 +32,11 @@
   </ItemGroup>
   <!-- Project references ensure correct build order -->
   <ItemGroup>
-    <PackageReference Include="KoreForge.Processing.Flow.Abstractions" VersionOverride="1.1.2" />
-    <PackageReference Include="KoreForge.Processing.Flow" VersionOverride="1.1.2" />
-    <PackageReference Include="KoreForge.Processing.Pipeline.Abstractions" VersionOverride="1.1.2" />
-    <PackageReference Include="KoreForge.Processing.Pipeline" VersionOverride="1.1.2" />
-    <PackageReference Include="KoreForge.Processing.Pipelines" VersionOverride="1.1.2" />
+    <PackageReference Include="KoreForge.Processing.Flow.Abstractions" VersionOverride="0.0.11-alpha.0" />
+    <PackageReference Include="KoreForge.Processing.Flow" VersionOverride="0.0.11-alpha.0" />
+    <PackageReference Include="KoreForge.Processing.Pipeline.Abstractions" VersionOverride="0.0.11-alpha.0" />
+    <PackageReference Include="KoreForge.Processing.Pipeline" VersionOverride="0.0.11-alpha.0" />
+    <PackageReference Include="KoreForge.Processing.Pipelines" VersionOverride="0.0.11-alpha.0" />
   </ItemGroup>
   <!-- Explicit list of assemblies and XML docs to bundle in the package -->
   <ItemGroup Condition="'$(KoreForgeComponentBinRoot)' == ''">
